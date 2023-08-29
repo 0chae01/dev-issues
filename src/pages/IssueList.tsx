@@ -38,18 +38,21 @@ const IssueList = () => {
   if (!issues) return <div>이슈 목록을 불러오지 못했습니다.</div>;
   return (
     <>
-      <Ad />
       <IssueItemContainer>
-        {issues.map((issue) => (
-          <IssueItem
-            key={issue.number}
-            number={issue.number}
-            title={issue.title}
-            author={issue.user.login}
-            createdAt={issue.created_at}
-            comments={issue.comments}
-          />
-        ))}
+        {issues.map((issue, idx) =>
+          (idx + 1) % 5 === 0 ? (
+            <Ad key={idx} />
+          ) : (
+            <IssueItem
+              key={idx}
+              number={issue.number}
+              title={issue.title}
+              author={issue.user.login}
+              createdAt={issue.created_at}
+              comments={issue.comments}
+            />
+          )
+        )}
       </IssueItemContainer>
     </>
   );

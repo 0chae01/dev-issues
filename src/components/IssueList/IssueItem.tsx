@@ -35,6 +35,7 @@ const ItemContainer = styled.li`
   padding: 10px;
   max-width: 800px;
   margin: 0 auto;
+  box-sizing: border-box;
 `;
 
 const IssueTitle = styled.p`
