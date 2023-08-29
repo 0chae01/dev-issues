@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import AD_LINK_WANTED from "../constants/ad";
+import AD_LINK_WANTED from "../../constants/ad";
 
 const handleOpenNewTab = (url: string) => {
   window.open(url, "_blank", "noopener, noreferrer");

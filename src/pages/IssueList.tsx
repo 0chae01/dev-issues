@@ -1,6 +1,8 @@
 import { Octokit, App } from "octokit";
 import { useEffect, useState } from "react";
-import Ad from "../components/Ad";
+import { styled } from "styled-components";
+import Ad from "../components/IssueList/Ad";
+import IssueItem from "../components/IssueList/IssueItem";
 import { issueType } from "../types/issueType";
 
 const getIssueList = async () => {
@@ -37,13 +39,25 @@ const IssueList = () => {
   return (
     <>
       <Ad />
-      <ul>
+      <IssueItemContainer>
         {issues.map((issue) => (
-          <li key={issue.number}>{issue.title}</li>
+          <IssueItem
+            key={issue.number}
+            number={issue.number}
+            title={issue.title}
+            author={issue.user.login}
+            createdAt={issue.created_at}
+            comments={issue.comments}
+          />
         ))}
-      </ul>
+      </IssueItemContainer>
     </>
   );
 };
 
 export default IssueList;
+
+const IssueItemContainer = styled.ul`
+  padding: 0;
+  margin: 0 10px;
+`;
