@@ -1,5 +1,6 @@
 import { Octokit, App } from "octokit";
 import { useEffect, useState } from "react";
+import Ad from "../components/Ad";
 import { issueType } from "../types/issueType";
 
 const getIssueList = async () => {
@@ -34,11 +35,14 @@ const IssueList = () => {
 
   if (!issues) return <div>이슈 목록을 불러오지 못했습니다.</div>;
   return (
-    <ul>
-      {issues.map((issue) => (
-        <li key={issue.number}>{issue.title}</li>
-      ))}
-    </ul>
+    <>
+      <Ad />
+      <ul>
+        {issues.map((issue) => (
+          <li key={issue.number}>{issue.title}</li>
+        ))}
+      </ul>
+    </>
   );
 };
 
