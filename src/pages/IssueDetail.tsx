@@ -42,19 +42,21 @@ const IssueDetail = () => {
   if (issue === undefined) return <div>에러</div>;
   return (
     <div>
-      <img
-        src={issue.user.avatar_url}
-        alt={issue.user.login}
-        width={80}
-        style={{ borderRadius: 50 }}
-      />
-      <IssueItem
-        number={issue.number}
-        title={issue.title}
-        author={issue.user.login}
-        createdAt={issue.created_at}
-        comments={issue.comments}
-      />
+      <IssueHeader>
+        <img
+          src={issue.user.avatar_url}
+          alt={issue.user.login}
+          width={80}
+          style={{ borderRadius: 50 }}
+        />
+        <IssueItem
+          number={issue.number}
+          title={issue.title}
+          author={issue.user.login}
+          createdAt={issue.created_at}
+          comments={issue.comments}
+        />
+      </IssueHeader>
       <IssueBody>
         <MarkdownRenderer body={issue.body} />
       </IssueBody>
@@ -63,6 +65,20 @@ const IssueDetail = () => {
 };
 
 export default IssueDetail;
+
+const IssueHeader = styled.div`
+  box-sizing: border-box;
+  max-width: 800px;
+  padding: 0 10px;
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+
+  li {
+    margin: 0;
+    border: none;
+  }
+`;
 
 const IssueBody = styled.article`
   max-width: 800px;
@@ -90,5 +106,11 @@ const IssueBody = styled.article`
     line-height: 2;
     direction: rtl;
     white-space: break-spaces;
+  }
+  img {
+    max-width: 700px;
+    display: flex;
+    justify-content: center;
+    margin: auto;
   }
 `;
