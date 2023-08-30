@@ -1,6 +1,7 @@
 import { Octokit } from "octokit";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import MarkdownRenderer from "../components/common/MarkdownRenderer";
 import IssueItem from "../components/IssueList/IssueItem";
 import { issueDetailType } from "../types/issueType";
 
@@ -53,6 +54,7 @@ const IssueDetail = () => {
         createdAt={issue.created_at}
         comments={issue.comments}
       />
+      <MarkdownRenderer body={issue.body} />
     </div>
   );
 };
