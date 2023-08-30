@@ -32,7 +32,7 @@ export default IssueItem;
 const ItemContainer = styled.li`
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #d0d7de;
+  border-bottom: 1px solid var(--color-gray);
   max-width: 800px;
   margin: 0 auto;
   box-sizing: border-box;
@@ -46,7 +46,7 @@ const ItemContainer = styled.li`
 const IssueTitle = styled(Link)`
   color: black;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 700;
   width: fit-content;
   margin: 0;
   margin-bottom: 10px;
@@ -54,10 +54,10 @@ const IssueTitle = styled(Link)`
   word-wrap: break-word;
 
   &:hover {
-    color: blue;
+    color: var(--color-hover-blue);
   }
 `;
 
 const ItemInfo = styled.span`
-  color: gray;
+  color: var(--color-dark-gray);
 `;

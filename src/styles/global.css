@@ -1,0 +1,14 @@
+:root {
+  /* font-family */
+  font-family: "Noto Sans", sans-serif;
+
+  /* color */
+  --color-white: #fff;
+  --color-black: #000;
+  --color-light-gray: #f2f4f7;
+  --color-gray: #d0d7de;
+  --color-dark-gray: #757575;
+
+  --color-hover-blue: #0969da;
+  --color-hover-light-gray: #f6f8fa;
+}
