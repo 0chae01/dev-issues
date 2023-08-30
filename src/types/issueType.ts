@@ -7,3 +7,11 @@ export interface issueType {
   created_at: string;
   comments: number;
 }
+
+export interface issueDetailType extends issueType {
+  user: {
+    login: string;
+    avatar_url: string;
+  };
+  body: string;
+}
