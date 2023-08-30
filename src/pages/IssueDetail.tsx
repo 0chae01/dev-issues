@@ -1,6 +1,7 @@
 import { Octokit } from "octokit";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
 import MarkdownRenderer from "../components/common/MarkdownRenderer";
 import IssueItem from "../components/IssueList/IssueItem";
 import { issueDetailType } from "../types/issueType";
@@ -54,9 +55,40 @@ const IssueDetail = () => {
         createdAt={issue.created_at}
         comments={issue.comments}
       />
-      <MarkdownRenderer body={issue.body} />
+      <IssueBody>
+        <MarkdownRenderer body={issue.body} />
+      </IssueBody>
     </div>
   );
 };
 
 export default IssueDetail;
+
+const IssueBody = styled.article`
+  max-width: 800px;
+  padding: 10px 20px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  border: 1px solid var(--color-gray);
+
+  code {
+    background-color: var(--color-light-gray);
+    border-radius: 4px;
+    padding: 4px;
+    font-size: small;
+    font-family: "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono",
+      monospace;
+  }
+
+  pre {
+    background-color: var(--color-light-gray);
+    padding: 8px;
+    border-radius: 4px;
+  }
+  pre code {
+    background-color: var(--color-light-gray);
+    line-height: 2;
+    direction: rtl;
+    white-space: break-spaces;
+  }
+`;
