@@ -5,5 +5,5 @@ export const changeDateFormat = (dateString: string) => {
   const month = date.getMonth();
   const day = date.getDate();
 
-  return `${year}년 ${month + 1}월 ${day}일`;
+  return `${year}-${month + 1}-${day}`;
 };
