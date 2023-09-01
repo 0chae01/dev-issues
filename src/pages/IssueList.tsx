@@ -25,31 +25,29 @@ const IssueList = () => {
   if (errorStatus) return <NotFound />;
 
   return (
-    <>
-      <IssueItemContainer>
-        {issues.length > 0 ? (
-          issues.map((issue, idx) => {
-            const showAd = (idx + 1) % 4 === 0;
-            return (
-              <React.Fragment key={issue.number}>
-                <IssueItem
-                  number={issue.number}
-                  title={issue.title}
-                  author={issue.user.login}
-                  createdAt={issue.created_at}
-                  comments={issue.comments}
-                />
-                {showAd && <Ad />}
-              </React.Fragment>
-            );
-          })
-        ) : (
-          <LoadingSpinner />
-        )}
-        {isLoading && !isRefetchNeeded && <LoadingSpinner />}
-        {moreData && <div ref={getNextPageRef} />}
-      </IssueItemContainer>
-    </>
+    <IssueItemContainer>
+      {issues.length > 0 ? (
+        issues.map((issue, idx) => {
+          const showAd = (idx + 1) % 4 === 0;
+          return (
+            <React.Fragment key={issue.number}>
+              <IssueItem
+                number={issue.number}
+                title={issue.title}
+                author={issue.user.login}
+                createdAt={issue.created_at}
+                comments={issue.comments}
+              />
+              {showAd && <Ad />}
+            </React.Fragment>
+          );
+        })
+      ) : (
+        <LoadingSpinner />
+      )}
+      {isLoading && !isRefetchNeeded && <LoadingSpinner />}
+      {moreData && <div ref={getNextPageRef} />}
+    </IssueItemContainer>
   );
 };
 
@@ -57,5 +55,5 @@ export default IssueList;
 
 const IssueItemContainer = styled.ul`
   padding: 0;
-  margin: 0 10px;
+  margin: 10px;
 `;

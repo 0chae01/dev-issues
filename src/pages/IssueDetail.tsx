@@ -69,6 +69,8 @@ const IssueBody = styled.article`
   max-width: 800px;
   padding: 10px 20px;
   margin: 0 auto;
+  margin-bottom: 20px;
   box-sizing: border-box;
   border: 1px solid var(--color-gray);
+  border-radius: 10px;
 `;
