@@ -21,7 +21,7 @@ const IssueItem = ({
   return (
     <ItemContainer>
       <IssueInfo>
-        <IssueTitle to={`/issue/${number}`}>{title}</IssueTitle>
+        <IssueTitle to={`/issues/${number}`}>{title}</IssueTitle>
         <ItemInfo>
           #{`${number} `} opened on {changeDateFormat(createdAt)} by
           <a>{` ${author}`}</a>
