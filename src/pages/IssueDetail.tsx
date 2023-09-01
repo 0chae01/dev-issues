@@ -41,7 +41,7 @@ const IssueDetail = () => {
             />
           </IssueHeader>
           <IssueBody>
-            <MarkdownRenderer body={issue.body} />
+            <MarkdownRenderer source={issue.body} />
           </IssueBody>
         </>
       )}
@@ -71,31 +71,4 @@ const IssueBody = styled.article`
   margin: 0 auto;
   box-sizing: border-box;
   border: 1px solid var(--color-gray);
-
-  code {
-    background-color: var(--color-light-gray);
-    border-radius: 4px;
-    padding: 4px;
-    font-size: small;
-    font-family: "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono",
-      monospace;
-  }
-
-  pre {
-    background-color: var(--color-light-gray);
-    padding: 8px;
-    border-radius: 4px;
-  }
-  pre code {
-    background-color: var(--color-light-gray);
-    line-height: 2;
-    direction: rtl;
-    white-space: break-spaces;
-  }
-  img {
-    max-width: 700px;
-    display: flex;
-    justify-content: center;
-    margin: auto;
-  }
 `;
