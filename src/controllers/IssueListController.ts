@@ -1,5 +1,4 @@
 import { useRecoilState } from "recoil";
-// import {issuesStateAtom} from 'stores/atom';
 import { issueType, issuesStateType } from "../types/issueType";
 import * as api from "../apis/issues";
 import { AxiosError } from "axios";

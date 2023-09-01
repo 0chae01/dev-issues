@@ -23,3 +23,9 @@ export interface issuesStateType {
   moreData: boolean;
   issues: issueType[] | [];
 }
+
+export interface issueDetailStateType {
+  isLoading: boolean;
+  errorStatus: number | string;
+  issue: issueDetailType;
+}

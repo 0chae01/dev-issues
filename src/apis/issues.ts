@@ -19,3 +19,22 @@ export const getIssueList = async (page: number) => {
     }
   );
 };
+
+export const getIssueItem = async (issueNumber: number) => {
+  const octokit = new Octokit({
+    auth: process.env.REACT_APP_OCTOKIT_TOKEN,
+  });
+
+  const response = await octokit.request(
+    "GET /repos/{owner}/{repo}/issues/{issue_number}",
+    {
+      owner: "facebook",
+      repo: "react",
+      issue_number: issueNumber,
+      headers: {
+        "X-GitHub-Api-Version": "2022-11-28",
+      },
+    }
+  );
+  return response;
+};

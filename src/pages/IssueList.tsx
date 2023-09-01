@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import Ad from "../components/IssueList/Ad";
 import IssueItem from "../components/IssueList/IssueItem";
-import { IssuesController } from "../controllers/IssuesController";
+import { IssuesController } from "../controllers/IssueListController";
 import { useInfiniteScroll } from "../hooks/useInfiniteScroll";
 import { issuesStateAtom } from "../stores/atom";
 import NotFound from "./NotFound";
