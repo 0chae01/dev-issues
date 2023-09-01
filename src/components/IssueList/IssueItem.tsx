@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
+import { changeDateFormat } from "../../utils/changeDateFormat";
 
 interface issueItemProp {
   number: number;
@@ -20,7 +21,7 @@ const IssueItem = ({
     <ItemContainer>
       <IssueTitle to={`/issue/${number}`}>{title}</IssueTitle>
       <ItemInfo>
-        #{`${number} `} opened on {createdAt} by
+        #{`${number} `} opened on {changeDateFormat(createdAt)} by
         <a>{` ${author}`}</a>
         {` ${comments} `}Comments
       </ItemInfo>
