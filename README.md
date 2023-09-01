@@ -3,7 +3,7 @@
 ## 프로젝트 실행 방법
 
 ```
-1. 루트 경로에 .env 파일 추가 후 `REACT_APP_GIT_TOKEN = "{{개인 깃헙 토큰}}" 추가 (미설정 시 api 호출 횟수 제한)
+1. 루트 경로에 .env 파일 추가 후 `REACT_APP_GIT_TOKEN = "{{개인 깃헙 토큰}}"` 추가 (미설정 시 api 호출 횟수 제한)
 2. $ npm install
 3. $ npm start
 ``````
