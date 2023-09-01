@@ -15,3 +15,11 @@ export interface issueDetailType extends issueType {
   };
   body: string;
 }
+
+export interface issuesStateType {
+  isLoading: boolean;
+  errorStatus: number | string;
+  pageCount: number;
+  moreData: boolean;
+  issues: issueType[] | [];
+}

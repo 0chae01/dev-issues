@@ -1,58 +1,53 @@
-import { Octokit, App } from "octokit";
-import { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useRecoilValue } from "recoil";
 import { styled } from "styled-components";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 import Ad from "../components/IssueList/Ad";
 import IssueItem from "../components/IssueList/IssueItem";
-import { issueType } from "../types/issueType";
-
-const getIssueList = async () => {
-  const octokit = new Octokit({
-    auth: process.env.REACT_APP_OCTOKIT_TOKEN,
-  });
-
-  return await octokit.request(
-    "GET /repos/{owner}/{repo}/issues?state={state}&sort={sort}&per_page={10}",
-    {
-      owner: "facebook",
-      repo: "react",
-      state: "open",
-      sort: "comments",
-      headers: {
-        "X-GitHub-Api-Version": "2022-11-28",
-      },
-    }
-  );
-};
+import { IssuesController } from "../controllers/IssuesController";
+import { useInfiniteScroll } from "../hooks/useInfiniteScroll";
+import { issuesStateAtom } from "../stores/atom";
+import NotFound from "./NotFound";
 
 const IssueList = () => {
-  const [issues, setIssues] = useState<issueType[]>();
+  const issuesState = useRecoilValue(issuesStateAtom);
+  const { isLoading, errorStatus, moreData, issues } = issuesState;
+  const isRefetchNeeded = !issues.length;
+
+  const { getIssues, getNextPage } = IssuesController();
 
   useEffect(() => {
-    getIssueList().then((response) => {
-      if (response.status === 200) {
-        setIssues(response.data);
-      }
-    });
+    isRefetchNeeded && getIssues(1);
   }, []);
 
-  if (!issues) return <div>이슈 목록을 불러오지 못했습니다.</div>;
+  const getNextPageRef = useInfiniteScroll(getNextPage);
+
+  if (errorStatus) return <NotFound />;
+
   return (
     <>
       <IssueItemContainer>
-        {issues.map((issue, idx) =>
-          (idx + 1) % 5 === 0 ? (
-            <Ad key={idx} />
-          ) : (
-            <IssueItem
-              key={idx}
-              number={issue.number}
-              title={issue.title}
-              author={issue.user.login}
-              createdAt={issue.created_at}
-              comments={issue.comments}
-            />
-          )
+        {issues.length > 0 ? (
+          issues.map((issue, idx) => {
+            const showAd = (idx + 1) % 4 === 0;
+            return (
+              <React.Fragment key={issue.number}>
+                <IssueItem
+                  number={issue.number}
+                  title={issue.title}
+                  author={issue.user.login}
+                  createdAt={issue.created_at}
+                  comments={issue.comments}
+                />
+                {showAd && <Ad />}
+              </React.Fragment>
+            );
+          })
+        ) : (
+          <LoadingSpinner />
         )}
+        {isLoading && !isRefetchNeeded && <LoadingSpinner />}
+        {moreData && <div ref={getNextPageRef} />}
       </IssueItemContainer>
     </>
   );
