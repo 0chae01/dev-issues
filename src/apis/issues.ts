@@ -2,7 +2,7 @@ import { Octokit } from "octokit";
 
 export const getIssueList = async (page: number) => {
   const octokit = new Octokit({
-    auth: process.env.REACT_APP_OCTOKIT_TOKEN,
+    auth: process.env.REACT_APP_GIT_TOKEN,
   });
 
   return await octokit.request(
@@ -22,7 +22,7 @@ export const getIssueList = async (page: number) => {
 
 export const getIssueItem = async (issueNumber: number) => {
   const octokit = new Octokit({
-    auth: process.env.REACT_APP_OCTOKIT_TOKEN,
+    auth: process.env.REACT_APP_GIT_TOKEN,
   });
 
   const response = await octokit.request(
